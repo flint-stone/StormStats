@@ -1,6 +1,7 @@
 import java.io.Serializable;
 
 
+
 public class Profile implements Serializable{
 	
 	public String ip;
@@ -8,8 +9,12 @@ public class Profile implements Serializable{
 	private double bandwidth_in;
 	private double bandwidth_out;
 	
+	
 	public Profile(String ip){
 		this.ip=ip;
+		this.cpu_usage=0.0;
+		this.bandwidth_in=0.0;
+		this.bandwidth_out=0.0;
 	}
 	
 	public double getCpu_usage() {
@@ -31,16 +36,6 @@ public class Profile implements Serializable{
 		this.bandwidth_out = bandwidth_out;
 	}
 
-	public void examine() {
-		// TODO Auto-generated method stub
-		//get cpu usage
-		cpu_usage=0;
-		//get network in
-		bandwidth_in=0;
-		//get network out
-		bandwidth_out=0;
-	}
-	
 	
 
 }

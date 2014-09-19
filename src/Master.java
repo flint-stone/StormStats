@@ -8,6 +8,7 @@ import java.net.Socket;
 public class Master {
 	
 	public static void main(String[] args) throws IOException{
+	//public static void start() throws IOException{
 		int port = 6789;
 		ServerSocket socket = new ServerSocket(port, 10);
 		Socket connection;
