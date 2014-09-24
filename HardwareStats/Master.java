@@ -10,7 +10,7 @@ public class Master {
 	
 	static HashMap<String, Profile> profile_map;
 	
-	public static void main(String[] args) throws IOException{
+	public void start(String[] args) throws IOException{
 	//public static void start() throws IOException{
 		profile_map = new HashMap<String, Profile>();
 		Thread t=new Thread(new ServerThread());
