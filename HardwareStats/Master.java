@@ -13,18 +13,37 @@ public class Master {
 	public static void main(String[] args) throws IOException{
 	//public static void start() throws IOException{
 		profile_map = new HashMap<String, Profile>();
-		int port = 6789;
-		ServerSocket socket = new ServerSocket(port, 10);
-		Socket connection;
-		while(true){
-			connection=socket.accept();
-			System.out.println("Waiting for connection...");
-			System.out.println("Connection received from " + connection.getInetAddress().getHostName());
-			ServerWorker worker=new ServerWorker(connection);
-			worker.run();			
-		}
+		Thread t=new Thread(new ServerThread());
+		t.start();
 	}
 
+}
+
+class ServerThread implements Runnable{
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		int port = 6789;
+		ServerSocket socket;
+		try {
+			socket = new ServerSocket(port, 10);
+			Socket connection;
+			while(true){
+				connection=socket.accept();
+				System.out.println("Waiting for connection...");
+				System.out.println("Connection received from " + connection.getInetAddress().getHostName());
+				ServerWorker worker=new ServerWorker(connection);
+				worker.run();			
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 }
 
 class ServerWorker implements Runnable{
