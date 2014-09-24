@@ -68,8 +68,19 @@ class ServerWorker implements Runnable{
 			
 			//receive profile
 			Object obj=this.in.readObject();
-			Profile prf=(Profile)obj;
-			
+			String ip=obj.toString();
+			obj=this.in.readObject();
+			double cpu=(double)obj;
+			obj=this.in.readObject();
+			double bandwidth_in=(double)obj;
+			obj=this.in.readObject();
+			double bandwidth_out=(double)obj;
+			this.out.flush();
+			//Profile prf=(Profile)obj;
+			Profile prf=new Profile(ip);
+			prf.setBandwidth_in(bandwidth_in);
+			prf.setBandwidth_out(bandwidth_out);
+			prf.setCpu_usage(cpu);
 			Master.profile_map.put(prf.ip, prf);
 			//print out information
 			System.out.println("host IP address: "+prf.ip);

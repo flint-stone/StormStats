@@ -36,6 +36,7 @@ public class ProfileUpdate implements Runnable {
 					double old=Slave.prf.getCurrent_inoctets();
 					Slave.prf.setBandwidth_in((d-old)/(1000*1024*1024)); 
 					Slave.prf.setCurrent_inoctets(d);
+					
 				}  
 				p.waitFor();
 				//oct out

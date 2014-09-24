@@ -36,7 +36,10 @@ class SlaveWorker implements Runnable{
 			Socket socket = new Socket("127.0.0.1",6789);
 			ObjectOutputStream out=new ObjectOutputStream(socket.getOutputStream());
 			out.flush();
-			out.writeObject(Slave.prf);
+			out.writeObject(Slave.prf.ip);
+			out.writeObject(Slave.prf.getCpu_usage());
+			out.writeObject(Slave.prf.getBandwidth_in());
+			out.writeObject(Slave.prf.getBandwidth_out());
 			out.flush();
 			
 		} catch (UnknownHostException e) {
